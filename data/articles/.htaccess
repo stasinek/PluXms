@@ -1,4 +1,14 @@
-<Files *>
-    Order allow,deny
-    Deny from all
-</Files>
+<IfModule !mod_authz_core.c>
+# Apache < 2.4
+
+Order Allow,Deny
+Deny from All
+
+</IfModule>
+
+<IfModule mod_authz_core.c>
+# Apache >= 2.4 Deny, Order obsolete
+
+Require all denied
+
+</IfModule>
