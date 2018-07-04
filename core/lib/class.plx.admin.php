@@ -37,7 +37,7 @@ class plxAdmin extends plxMotor {
 		parent::__construct($filename);
 
 		# Hook plugins
-		eval($this->plxPlugins->callHook('plxAdminConstruct'));
+		eval($this->plxPlugins->callHook('AdminConstruct'));
 	}
 
 	/**
@@ -88,7 +88,7 @@ class plxAdmin extends plxMotor {
 	public function editConfiguration($global,$content) {
 
 		# Hook plugins
-		eval($this->plxPlugins->callHook('plxAdminEditConfiguration'));
+		eval($this->plxPlugins->callHook('AdminEditConfiguration'));
 
 		foreach($content as $k=>$v) {
 			if(!in_array($k,array('token','config_path'))) # parametres à ne pas mettre dans le fichier
@@ -188,7 +188,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 		}
 
 		# Hook plugins
-		eval($this->plxPlugins->callHook('plxAdminHtaccess'));
+		eval($this->plxPlugins->callHook('AdminHtaccess'));
 		# On écrit le fichier .htaccess à la racine de PluXml
 		$htaccess = trim($htaccess);
 		if($htaccess=='' AND is_file(PLX_ROOT.'.htaccess')) {
@@ -259,7 +259,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 		$_SESSION['admin_lang'] = $content['lang'];
 
 		# Hook plugins
-		if(eval($this->plxPlugins->callHook('plxAdminEditProfil'))) return;
+		if(eval($this->plxPlugins->callHook('AdminEditProfil'))) return;
 		return $this->editUsers(null, true);
 	}
 
@@ -337,7 +337,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 					$this->aUsers[$user_id]['lang'] = (isset($this->aUsers[$user_id]['lang'])?$this->aUsers[$user_id]['lang']:$this->aConf['default_lang']);
 					$this->aUsers[$user_id]['infos'] = (isset($this->aUsers[$user_id]['infos'])?$this->aUsers[$user_id]['infos']:'');
 					# Hook plugins
-					eval($this->plxPlugins->callHook('plxAdminEditUsersUpdate'));
+					eval($this->plxPlugins->callHook('AdminEditUsersUpdate'));
 					$action = true;
 				}
 			}
@@ -374,7 +374,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 				$xml .= "\t\t".'<email><![CDATA['.plxUtils::cdataCheck($user['email']).']]></email>'."\n";
 				$xml .= "\t\t".'<lang><![CDATA['.plxUtils::cdataCheck($user['lang']).']]></lang>'."\n";
 				# Hook plugins
-				eval($this->plxPlugins->callHook('plxAdminEditUsersXml'));
+				eval($this->plxPlugins->callHook('AdminEditUsersXml'));
 				$xml .= "\t</user>\n";
 			}
 			$xml .= "</document>";
@@ -410,7 +410,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 		$this->aUsers[$content['id']]['infos'] = trim($content['content']);
 		$this->aUsers[$content['id']]['lang'] = $content['lang'];
 		# Hook plugins
-		eval($this->plxPlugins->callHook('plxAdminEditUser'));
+		eval($this->plxPlugins->callHook('AdminEditUser'));
 		return $this->editUsers(null,true);
 	}
 
@@ -466,7 +466,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 				$this->aCats[$cat_id]['meta_description'] = '';
 				$this->aCats[$cat_id]['meta_keywords'] = '';
 				# Hook plugins
-				eval($this->plxPlugins->callHook('plxAdminEditCategoriesNew'));
+				eval($this->plxPlugins->callHook('AdminEditCategoriesNew'));
 				$action = true;
 			}
 		}
@@ -492,7 +492,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 					$this->aCats[$cat_id]['meta_description'] = (isset($this->aCats[$cat_id]['meta_description'])?$this->aCats[$cat_id]['meta_description']:'');
 					$this->aCats[$cat_id]['meta_keywords'] = (isset($this->aCats[$cat_id]['meta_keywords'])?$this->aCats[$cat_id]['meta_keywords']:'');
 					# Hook plugins
-					eval($this->plxPlugins->callHook('plxAdminEditCategoriesUpdate'));
+					eval($this->plxPlugins->callHook('AdminEditCategoriesUpdate'));
 					$action = true;
 				}
 			}
@@ -528,7 +528,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 				$xml .= "<meta_description><![CDATA[".plxUtils::cdataCheck($cat['meta_description'])."]]></meta_description>";
 				$xml .= "<meta_keywords><![CDATA[".plxUtils::cdataCheck($cat['meta_keywords'])."]]></meta_keywords>";
 				$xml .= "<title_htmltag><![CDATA[".plxUtils::cdataCheck($cat['title_htmltag'])."]]></title_htmltag>";
-				eval($this->plxPlugins->callHook('plxAdminEditCategoriesXml'));
+				eval($this->plxPlugins->callHook('AdminEditCategoriesXml'));
 				$xml .= "</categorie>\n";
 			}
 			$xml .= "</document>";
@@ -558,7 +558,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 		$this->aCats[$content['id']]['meta_description'] = trim($content['meta_description']);
 		$this->aCats[$content['id']]['meta_keywords'] = trim($content['meta_keywords']);
 		# Hook plugins
-		eval($this->plxPlugins->callHook('plxAdminEditCategorie'));
+		eval($this->plxPlugins->callHook('AdminEditCategorie'));
 		return $this->editCategories(null,true);
 	}
 
@@ -617,7 +617,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 						$this->aStats[$static_id]['date_update'] = date('YmdHi');
 					}
 					# Hook plugins
-					eval($this->plxPlugins->callHook('plxAdminEditStatiquesUpdate'));
+					eval($this->plxPlugins->callHook('AdminEditStatiquesUpdate'));
 					$action = true;
 				}
 			}
@@ -656,7 +656,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 				$xml .= "<date_creation><![CDATA[".plxUtils::cdataCheck($static['date_creation'])."]]></date_creation>";
 				$xml .= "<date_update><![CDATA[".plxUtils::cdataCheck($static['date_update'])."]]></date_update>";
 				# Hook plugins
-				eval($this->plxPlugins->callHook('plxAdminEditStatiquesXml'));
+				eval($this->plxPlugins->callHook('AdminEditStatiquesXml'));
 				$xml .=	"</statique>\n";
 			}
 			$xml .= "</document>";
@@ -713,7 +713,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 		$this->aStats[$content['id']]['date_update'] = $date_update;
 
 		# Hook plugins
-		eval($this->plxPlugins->callHook('plxAdminEditStatique'));
+		eval($this->plxPlugins->callHook('AdminEditStatique'));
 		if($this->editStatiques(null,true)) {
 			# Génération du nom du fichier de la page statique
 			$filename = PLX_ROOT.$this->aConf['racine_statiques'].$content['id'].'.'.$this->aStats[ $content['id'] ]['url'].'.php';
@@ -770,7 +770,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 		if($content['url'] == '') $content['url'] = L_DEFAULT_NEW_ARTICLE_URL;
 
 		# Hook plugins
-		if(eval($this->plxPlugins->callHook('plxAdminEditArticle'))) return;
+		if(eval($this->plxPlugins->callHook('AdminEditArticle'))) return;
 
 		# Suppression des doublons dans les tags
 		$tags = array_map('trim', explode(',', trim($content['tags'])));
@@ -813,7 +813,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 		if ($content['rating']) $xml .= "\t".'<rating>'.$content['rating'].'</rating>'."\n";
 		else $xml .= "\t".'<rating>0</rating>'."\n";
 		# Hook plugins
-		eval($this->plxPlugins->callHook('plxAdminEditArticleXml'));
+		eval($this->plxPlugins->callHook('AdminEditArticleXml'));
 		$xml .= "</document>\n";
 		# Recherche du nom du fichier correspondant à l'id
 		$oldArt = $this->plxGlob_arts->query('/^'.$id.'.(.*).xml$/','','sort',0,1,'all');
@@ -842,7 +842,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 			$this->aTags[$id] = array('tags'=>trim($content['tags']), 'date'=>$time, 'active'=>intval(!in_array('draft', $content['catId'])));
 			$this->editTags();
 			$msg = ($content['artId'] == '0000' OR $content['artId'] == '') ? L_ARTICLE_SAVE_SUCCESSFUL : L_ARTICLE_MODIFY_SUCCESSFUL;
-			eval($this->plxPlugins->callHook('plxAdminEditArticleEnd'));
+			eval($this->plxPlugins->callHook('AdminEditArticleEnd'));
 			return plxMsg::Info($msg);
 		} else {
 			return plxMsg::Error(L_ARTICLE_SAVE_ERR);
@@ -878,7 +878,7 @@ RewriteRule ^feed\/(.*)$ feed.php?$1 [L]
 		}
 
 		# Hook plugins
-		if(eval($this->plxPlugins->callHook('plxAdminDelArticle'))) return;
+		if(eval($this->plxPlugins->callHook('AdminDelArticle'))) return;
 
 		# On renvoi le résultat
 		if($resDelArt AND $resDelCom) {
