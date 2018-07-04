@@ -36,7 +36,9 @@
 	padding: .7rem;
 	text-align: center;
 }
-
+.auth input[type="text"],.auth input[type="password"], .auth label, .auth h1 {
+	 font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+}
 /* ---------- Main ---------- */
 
 .main.grid {

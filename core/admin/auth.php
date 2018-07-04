@@ -123,7 +123,6 @@ plxUtils::cleanHeaders();
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
 	<title>PluXml - <?php echo L_AUTH_PAGE_TITLE ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=<?php echo strtolower(PLX_CHARSET); ?>" />
-	<link rel="stylesheet" type="text/css" href="<?php echo PLX_CORE ?>admin/theme/plucss.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php echo PLX_CORE ?>admin/theme/theme.css" media="screen" />
 	<?php if(is_file(PLX_ROOT.$plxAdmin->aConf['custom_admincss_file'])) echo '<link rel="stylesheet" type="text/css" href="'.PLX_ROOT.$plxAdmin->aConf['custom_admincss_file'].'" media="screen" />'."\n" ?>
 	<link rel="icon" href="<?php echo PLX_CORE ?>admin/theme/images/favicon.png" />
@@ -131,11 +130,10 @@ plxUtils::cleanHeaders();
 </head>
 
 <body>
-
 	<main class="container">
 		<section class="grid">
 			<div class="logo"></div>
-			<div class="auth col sml-12 sml-centered med-5 lrg-3">
+			<div class="auth col sml-12 sml-centered med-8 lrg-8">
 				<?php eval($plxAdmin->plxPlugins->callHook('AdminAuthTop')) ?>
 				<form action="auth.php<?php echo !empty($redirect)?'?p='.plxUtils::strCheck(urlencode($redirect)):'' ?>" method="post" id="form_auth">
 					<fieldset>
@@ -156,20 +154,17 @@ plxUtils::cleanHeaders();
 						</div>
 						<?php eval($plxAdmin->plxPlugins->callHook('AdminAuth')) ?>
 						<div class="grid">
-							<div class="col sml-12 text-center">
+							<div class="col sml-12 text-right">
 								<input class="gray" type="button" onclick="window.location.href='<?php echo PLX_ROOT; ?>'" value="<?php echo L_BACK_TO_SITE ?>"/>
 								<input class="blue" type="submit" value="<?php echo L_SUBMIT_BUTTON ?>" />
 							</div>
 						</div>
 					</fieldset>
 				</form>
-				<p class="text-center">
-					<small><?php echo L_POWERED_BY ?></small>
-				</p>
+				<p class="text-right"><small><?php echo L_POWERED_BY ?></small></p>
 			</div>
 		</section>
 	</main>
-
 <?php eval($plxAdmin->plxPlugins->callHook('AdminAuthEndBody')) ?>
 </body>
 </html>

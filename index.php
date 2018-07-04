@@ -1,7 +1,7 @@
 <?php
 //------------------------------------------------------------------------------------------------
 if (!isset($root)) $root = str_replace('\\','/',dirname(dirname(dirname(__DIR__))));
-require_once($root.'/common/include/start/main.php');
+require_once($root.'/public_html/start/common/main.php');
 store_visitor("pluxml");
 //------------------------------------------------------------------------------------------------
 define('PLX_ROOT', './');
