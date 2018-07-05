@@ -1467,7 +1467,6 @@ class plxShow {
 		}
 
 	}
-
 	/**
 	 * Méthode qui retourne l'id de la page statique active
 	 *
@@ -1483,7 +1482,6 @@ class plxShow {
 		else
 			return plxUtils::strCheck($this->plxMotor->mode);
 	}
-
 	/**
 	 * Méthode qui affiche ou retourne l'url de la page statique
 	 *
@@ -1506,7 +1504,6 @@ class plxShow {
 				return $url;
 		}
 	}
-
 	/**
 	 * Méthode qui affiche le titre de la page statique
 	 *
@@ -1518,7 +1515,6 @@ class plxShow {
 
 		echo plxUtils::strCheck($this->plxMotor->aStats[ $this->plxMotor->cible ]['name']);
 	}
-
 	/**
 	 * Méthode qui affiche le groupe de la page statique
 	 *
@@ -1530,7 +1526,6 @@ class plxShow {
 
 		echo plxUtils::strCheck($this->plxMotor->aStats[ $this->plxMotor->cible ]['group']);
 	}
-
 	/**
 	 * Méthode qui affiche la date de la dernière modification de la page statique selon le format choisi
 	 *
