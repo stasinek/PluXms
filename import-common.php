@@ -14,9 +14,9 @@ if (isset($_GET['group'])) $group = $_GET['group'];
 else $group = 0;
 #Setting the import folder, 
 if (isset($_GET['path'])) $path = $_GET['path'];
-else $path = "import-demo";
+else $path = "import-data";
 #for security reasons "\" "/" or "." as any part of PluXml directory is forbiden
-$path_blacklist = array("\\","/",".","data","core","plugins","themes","common",".git");
+$path_blacklist = array("\\","/",".","data","core","plugins","themes","common","sauvegarde","update",".git");
 for ($i = 0; $i < count($path_blacklist); $i++) {
 	 if (strstr($path_blacklist[$i],$path)) exit(0);
 	 else continue;

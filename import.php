@@ -173,7 +173,7 @@ for($i = 0; $i < count($lista); $i++)
 	if (!$file_xml) { echo "^ Error creating file.<br>"; continue; }
 
 	$content = array('template'=>'article.php','title'=>fileName2Title($filename),
-	'subtitle'=>'Zaimportowane automatycznie z notatek tekstowych<br>','date_update'=>fileName2FileDate($filename),
+	'subtitle'=>'Zaimportowane automatycznie z folderu notatek tekstowych<br>','date_update'=>fileName2FileDate($filename),
 	'date_creation'=>fileName2FileDate($filename),
 	'content'=>$text,'tags'=>'Komentarze Stanley','meta_keywords'=>'comments news research wiki');
 	foreach ($article_keys as $key) {

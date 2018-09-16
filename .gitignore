@@ -2,3 +2,5 @@
 *.~*
 *.zip
 sauvegarde/*
+import-data/*
+data/*

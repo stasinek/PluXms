@@ -1,7 +1,8 @@
 <?php if (!isset($root)) exit(0); ?>
 <?php require_once("import-common.php");
 
-	echo str_replace($root.'/nextcloud/test',$_SERVER['HTTP_HOST'].'/nextcloud/test','/nextcloud/test').'</b><br>'.PHP_EOL;
+	$import_path = '/nextcloud/data/stasinek/files/Notes';
+	echo str_replace($root.$import_path,$_SERVER['HTTP_HOST'].$import_path,$import_path).'</b><br>'.PHP_EOL;
 	echo '<ul>'.PHP_EOL;
 	// UPPER DIRECTORY - LINK
 	if (isset($_GET['path']) ? dirname($_GET['path'])!='.' : false)
@@ -12,13 +13,13 @@
 		{
 		echo ' <li><a href="'.$page_url.'"><b>nextcloud/test</b></li>';
 		}
-	$lista = glob($root.'/nextcloud/test'.'/*');
+	$lista = glob($root.$import_path.'/*');
 	$maska = array("*.txt","*.html","*.htm");
 	$maska_match = false;
 	for($i = 0; $i < count($lista); $i++)
 		{ 
 		$filename = $lista[$i];
-		$relative_name = str_replace($root.'/nextcloud/test/',"",$filename);
+		$relative_name = str_replace($root.$import_path,"",$filename);
 		if(is_dir($filename)==true)
 			{ 
 			$subdir = glob($filename.'/*', GLOB_NOSORT);
