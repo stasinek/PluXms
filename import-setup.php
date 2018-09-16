@@ -1,5 +1,5 @@
-<?php
-require_once("import-common.php");
+<?php if (!isset($root)) exit(0); ?>
+<?php require_once("import-common.php");
 
 	echo str_replace($root.'/nextcloud/test',$_SERVER['HTTP_HOST'].'/nextcloud/test','/nextcloud/test').'</b><br>'.PHP_EOL;
 	echo '<ul>'.PHP_EOL;
